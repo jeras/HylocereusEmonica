@@ -146,10 +146,6 @@ install -v -m 664 -o root -D $OVERLAY/etc/securetty $ROOT_DIR/etc/securetty
 install -v -m 664 -o root -D $OVERLAY/etc/systemd/system/serial-getty@ttyPS0.service.d/override.conf \
                             $ROOT_DIR/etc/systemd/system/serial-getty@ttyPS0.service.d/override.conf
 
-chroot $ROOT_DIR <<- EOF_CHROOT
-echo root:root | chpasswd
-EOF_CHROOT
-
 ################################################################################
 # cleanup
 ################################################################################
