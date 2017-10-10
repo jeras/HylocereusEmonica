@@ -14,12 +14,6 @@ cd prj/$::argv
 tclapp::install -quiet ultrafast
 
 ################################################################################
-# Enabling Xilinx Parameterized Macros
-################################################################################
-
-auto_detect_xpm
-
-################################################################################
 # define paths
 ################################################################################
 
@@ -47,6 +41,9 @@ set_param board.repoPaths [list $path_brd]
 set part xc7z010clg400-1
 
 create_project -in_memory -part $part
+
+# Enabling Xilinx Parameterized Macros
+auto_detect_xpm
 
 ################################################################################
 # create PS BD (processing system block design)
