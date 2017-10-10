@@ -41,8 +41,8 @@ Values for the used macros can be found in the kernel sources.
 
    $ grep ZYNQ_GPIO_NR_GPIOS drivers/gpio/gpio-zynq.c
    #define	ZYNQ_GPIO_NR_GPIOS	118
-   $ grep -r CONFIG_ARCH_NR_GPIO tmp/linux-xlnx-xilinx-v2017.2
-   tmp/linux-xlnx-xilinx-v2017.2/.config:CONFIG_ARCH_NR_GPIO=1024
+   $ grep -r CONFIG_ARCH_NR_GPIO tmp/linux-xlnx-xilinx-v2017.3
+   tmp/linux-xlnx-xilinx-v2017.3/.config:CONFIG_ARCH_NR_GPIO=1024
 
 Another way to find the `gpio_base` index is to check the given name inside `sysfs`.
 

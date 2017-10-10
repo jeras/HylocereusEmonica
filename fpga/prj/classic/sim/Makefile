@@ -1,7 +1,7 @@
 MODELSIM_BIN=$(HOME)/intelFPGA/16.1/modelsim_ase/bin
 
-PATH_LIB=/opt/Xilinx/Vivado/2017.2/data/verilog/src
-PATH_SIP=/opt/Xilinx/Vivado/2017.2/data/secureip
+PATH_LIB=/opt/Xilinx/Vivado/2017.3/data/verilog/src
+PATH_SIP=/opt/Xilinx/Vivado/2017.3/data/secureip
 PATH_RTL=../rtl
 PATH_TBN=../tbn
 
