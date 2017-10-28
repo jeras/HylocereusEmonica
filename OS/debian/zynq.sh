@@ -124,6 +124,12 @@ groupadd --system dma
 useradd -m -c "Red Pitaya" -s /bin/bash -G sudo,xdevcfg,uio,xadc,led,gpio,spi,i2c,eeprom,dialout,dma redpitaya
 EOF_CHROOT
 
+################################################################################
+# systemd services
+################################################################################
+
+install -v -m 664 -o root -D $OVERLAY/etc/sysconfig/redpitaya $ROOT_DIR/etc/sysconfig/redpitaya
+
 ###############################################################################
 # configuring shell
 ###############################################################################
