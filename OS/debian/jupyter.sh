@@ -19,6 +19,9 @@ else
 fi
 
 chroot $ROOT_DIR <<- EOF_CHROOT
+# proxy server for Jupyter
+apt-get -y install nginx
+
 # Sigrok
 # TODO: this packages are not available on Debian
 apt-get -y install libsigrok libsigrokdecode sigrok-cli
@@ -26,50 +29,12 @@ apt-get -y install libsigrok libsigrokdecode sigrok-cli
 # NOTE: for now do not install OWFS, and avoid another http/ftp server from running by default
 #apt-get -y install owfs python-ow
 
-# Python package manager, Jupyter dependencies
-apt-get -y install python3-dev python3-cffi python3-wheel python3-setuptools python3-pip python3-zmq python3-jinja2 python3-pygments python3-six python3-html5lib python3-terminado python3-decorator python3-ptyprocess python3-pexpect python3-simplegeneric python3-wcwidth python3-pickleshare python3-bleach python3-mistune python3-jsonschema
-# update PIP
-pip3 install --upgrade pip
-
 # Python numerical processing and plotting
-apt-get -y install gfortran libopenblas-dev liblapack-dev python-dev
-# APT
 apt-get -y install python3-numpy python3-scipy python3-pandas
 apt-get -y install python3-matplotlib
-# # PIP (there appears to be a bug in how new numpy handles FPGA buffer mapping)
-# pip3 install numpy
-# pip3 install scipy
-# pip3 install pandas
-# apt-get -y install libpng-dev libfreetype6-dev
-# #pip3 install pycairo
-# pip3 install matplotlib
 
-# Jupyter and ipywidgets
-pip3 install jupyter
-pip3 install ipywidgets
-jupyter nbextension enable --system --py widgetsnbextension
-
-# Jupyter declarative widgets
-pip3 install jupyter_declarativewidgets
-#jupyter declarativewidgets quick-setup --sys-prefix
-jupyter declarativewidgets install
-jupyter nbextension enable --sys-prefix --py --system declarativewidgets
-
-# # Jupyter dashboards
-# pip3 install jupyter_dashboards
-# jupyter dashboards quick-setup --sys-prefix
-# # TODO: not sure this step is needed
-# jupyter nbextension enable --sys-prefix --py --system jupyter_dashboards
-# # Jupyter dashboards dundlers
-# pip3 install jupyter_dashboards_bundlers
-# jupyter bundlerextension enable --sys-prefix --py --system dashboards_bundlers
-
-# Jupyter dashboards server
-# TODO: this is a rather large install mostly due to Node.js
-# https://github.com/jupyter-incubator/dashboards_server
-# TODO: this is disabled for now
-#apt-get -y install npm
-#npm install -g jupyter-dashboards-server
+# Jupyter
+apt-get -y install jupyter-notebook
 
 # http://bokeh.pydata.org/ interactive visualization library
 pip3 install bokeh

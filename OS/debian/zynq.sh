@@ -37,14 +37,10 @@ install -v -m 664 -o root -D patches/fw_env.config  $ROOT_DIR/etc/fw_env.config
 chroot $ROOT_DIR <<- EOF_CHROOT
 # I2C libraries
 apt-get install -y libi2c-dev i2c-tools
-
-# Device tree compiler can be used to compile custom overlays
-apt-get -y install libudev-dev
 EOF_CHROOT
 
 # NOTE: we have to compile a custom device tree compiler with overlay support
 chroot $ROOT_DIR <<- EOF_CHROOT
-apt-get -y install build-essential gcc bison flex
 #curl -L https://github.com/pantoniou/dtc/archive/overlays.tar.gz -o dtc.tar.gz
 curl -L https://github.com/RedPitaya/dtc/archive/overlays.tar.gz -o dtc.tar.gz
 tar zxvf dtc.tar.gz
@@ -63,10 +59,10 @@ chroot $ROOT_DIR <<- EOF_CHROOT
 apt-get -y install libxml2 libxml2-dev bison flex libcdk5-dev cmake
 apt-get -y install libaio-dev libusb-1.0-0-dev libserialport-dev libxml2-dev libavahi-client-dev
 apt-get -y install python3-pip python3-setuptools
-#git clone --branch v0.10 --depth 1 https://github.com/analogdevicesinc/libiio.git
-curl -L https://github.com/analogdevicesinc/libiio/archive/v0.10.tar.gz -o libiio.tar.gz
+#git clone --branch v0.11 --depth 1 https://github.com/analogdevicesinc/libiio.git
+curl -L https://github.com/analogdevicesinc/libiio/archive/v0.11.tar.gz -o libiio.tar.gz
 tar zxvf libiio.tar.gz
-cd libiio-0.10/
+cd libiio-0.11/
 cmake ./
 make all
 make install

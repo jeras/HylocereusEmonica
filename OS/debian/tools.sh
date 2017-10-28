@@ -12,17 +12,22 @@ else
 fi
 
 chroot $ROOT_DIR <<- EOF_CHROOT
-apt-get -y install dbus udev
+# UDEV tools
+apt-get -y install libudev-dev
+apt-get -y install udev
+
+# DBUS
+apt-get -y install dbus
 
 # Git can be used to share notebook examples
 apt-get -y install git
 
-# debug tools
-apt-get -y install gdb cgdb libcunit1-ncurses-dev
+# gcc & debugger
+apt-get -y install gcc bison flex
+apt-get -y install gdb cgdb
 
 # development tools
-apt-get -y install build-essential less vim nano sudo usbutils psmisc lsof
-apt-get -y install parted dosfstools
+apt-get -y install less vim nano sudo usbutils psmisc lsof
 
 # Python 3
 apt-get -y install python3 python3-pip python3-setuptools
@@ -32,8 +37,9 @@ pip3 install --upgrade pip
 pip3 install meson
 apt-get -y install ninja-build
 
-# install file system tools
+# file system tools
 apt-get -y install mtd-utils
+apt-get -y install parted dosfstools
 
 # DSP library for C language
 # TODO: the package does not exist yet in Ubuntu 16.04, But is available in Debian stretch
