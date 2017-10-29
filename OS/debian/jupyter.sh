@@ -89,11 +89,11 @@ EOF_CHROOT
 # copy/link notebook examples
 ###############################################################################
 
-mkdir $ROOT_DIR/home/jupyter/RedPitaya
-git clone https://github.com/redpitaya/jupyter.git $ROOT_DIR/home/jupyter/RedPitaya
+mkdir $ROOT_DIR/home/jupyter/HylocereusEmonica
+git clone https://github.com/jeras/HylocereusEmonica-jupyter $ROOT_DIR/home/jupyter/HylocereusEmonica
 
 chroot $ROOT_DIR <<- EOF_CHROOT
-pip3 install -e /home/jupyter/RedPitaya
+pip3 install -e /home/jupyter/HylocereusEmonica
 EOF_CHROOT
 
 mkdir $ROOT_DIR/home/jupyter/WhirlwindTourOfPython

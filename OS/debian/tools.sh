@@ -31,6 +31,7 @@ apt-get -y install less vim nano sudo usbutils psmisc lsof
 
 # Python 3
 apt-get -y install python3 python3-pip python3-setuptools
+apt-get -y install python3-wheel
 pip3 install --upgrade pip
 
 # Meson+ninja build system
