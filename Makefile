@@ -4,7 +4,6 @@
 
 SUBMODULE_UBT = "redpitaya-v2016.4"
 SUBMODULE_LIN = "branch-redpitaya-v2017.2"
-SUBMODULE_APP = $(shell git submodule status Applications)
 
 define GREET_MSG
 ##############################################################################
@@ -13,7 +12,6 @@ define GREET_MSG
 # Commit: $(GIT_COMMIT)
 # U-Boot: $(SUBMODULE_UBT)
 # Linux Kernel: $(SUBMODULE_LIN)
-# Pro Applications: $(SUBMODULE_APP)
 ##############################################################################
 endef
 export GREET_MSG
