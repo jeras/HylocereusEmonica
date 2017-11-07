@@ -2,14 +2,6 @@
 # versioning system
 ################################################################################
 
-VER := $(shell cat apps-tools/ecosystem/info/info.json | grep version | sed -e 's/.*:\ *\"//' | sed -e 's/-.*//')
-BUILD_NUMBER ?= 0
-REVISION ?= $(shell git rev-parse --short HEAD)
-VERSION = $(VER)-$(BUILD_NUMBER)-$(REVISION)
-export BUILD_NUMBER
-export REVISION
-export VERSION
-
 SUBMODULE_UBT = "redpitaya-v2016.4"
 SUBMODULE_LIN = "branch-redpitaya-v2017.2"
 SUBMODULE_APP = $(shell git submodule status Applications)
@@ -17,8 +9,6 @@ SUBMODULE_APP = $(shell git submodule status Applications)
 define GREET_MSG
 ##############################################################################
 # Red Pitaya GNU/Linux Ecosystem
-# Version: $(VER)
-# Build: $(BUILD_NUMBER)
 # Branch: $(GIT_LOCAL_BRANCH)
 # Commit: $(GIT_COMMIT)
 # U-Boot: $(SUBMODULE_UBT)
@@ -203,7 +193,7 @@ $(BOOT): $(INSTALL_DIR)/fpga $(UBOOT) $(INSTALL_DIR)
 # tarball
 ################################################################################
 
-ZIPFILE=ecosystem-$(VERSION).zip
+ZIPFILE=ecosystem.zip
 
 zip: $(ZIPFILE)
 
