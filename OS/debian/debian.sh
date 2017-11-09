@@ -40,19 +40,7 @@ EOF_CHROOT
 # APT settings
 ################################################################################
 
-cat <<- EOF_CAT > $ROOT_DIR/etc/apt/sources.list
-deb $MIRROR $DISTRO main contrib non-free
-deb-src $MIRROR $DISTRO main contrib non-free
-deb $MIRROR $DISTRO-updates main contrib non-free
-deb-src $MIRROR $DISTRO-updates main contrib non-free
-deb http://security.debian.org/debian-security $DISTRO/updates main contrib non-free
-deb-src http://security.debian.org/debian-security $DISTRO/updates main contrib non-free
-EOF_CAT
-
-cat <<- EOF_CAT > $ROOT_DIR/etc/apt/apt.conf.d/99norecommends
-APT::Install-Recommends "0";
-APT::Install-Suggests "0";
-EOF_CAT
+cp -r $OVERLAY/etc/apt/* $ROOT_DIR/etc/
 
 chroot $ROOT_DIR <<- EOF_CHROOT
 apt-get update
