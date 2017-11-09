@@ -54,6 +54,10 @@ pip3 install pyvcd
 pip3 install pyudev pyfdt
 EOF_CHROOT
 
+# Nginx configuration
+install -v -m 664 -o root -D  $OVERLAY/etc/nginx/nginx.conf \
+                             $ROOT_DIR/etc/nginx/nginx.conf
+
 ###############################################################################
 # create user and add it into groups for HW access rights
 ###############################################################################
