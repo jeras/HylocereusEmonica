@@ -75,14 +75,6 @@ cat /etc/default/keyboard
 EOF_CHROOT
 
 ################################################################################
-# hostname
-# NOTE: redpitaya.py enables a systemd service
-# which changes the hostname on boot, to an unique value
-################################################################################
-
-install -v -m 664 -o root -D $OVERLAY/etc/hostname  $ROOT_DIR/etc/hostname
-
-################################################################################
 # timezone and fake HW time
 ################################################################################
 
@@ -156,16 +148,6 @@ rm -f $ROOT_DIR/zero.file
 
 # remove ARM emulation
 rm $ROOT_DIR/usr/bin/qemu-arm-static
-
-################################################################################
-# archiving image
-################################################################################
-
-# create a tarball (without resolv.conf link, since it causes schroot issues)
-rm $ROOT_DIR/etc/resolv.conf
-tar -cpzf redpitaya_OS_${DATE}.tar.gz --one-file-system -C $ROOT_DIR .
-# recreate resolv.conf link
-ln -sf /run/systemd/resolve/resolv.conf $ROOT_DIR/etc/resolv.conf
 
 # one final sync to be sure
 sync
