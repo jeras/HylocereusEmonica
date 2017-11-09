@@ -20,7 +20,7 @@ export GREET_MSG
 # targets
 ################################################################################
 
-all: fpga devicetree u-boot linux boot
+all: fpga devicetree u-boot linux boot zip
 
 install: linux-install devicetree-install boot
 
@@ -70,7 +70,8 @@ UBOOT_CFLAGS = "-O2 -mtune=cortex-a9 -mfpu=neon -mfloat-abi=hard"
 # FPGA build provides: $(FSBL), $(FPGA), $(DEVICETREE).
 ################################################################################
 
-FPGA_PRJ_LST = mercury axi4lite
+#FPGA_PRJ_LST = mercury axi4lite
+FPGA_PRJ_LST = mercury
 FPGA_PRJ = mercury
 
 .PHONY: fpga
