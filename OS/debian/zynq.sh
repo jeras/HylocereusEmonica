@@ -1,7 +1,7 @@
 ################################################################################
 # Authors:
 # - Pavel Demin <pavel.demin@uclouvain.be>
-# - Iztok Jeras <iztok.jeras@redpitaya.com>
+# - Iztok Jeras <iztok.jeras@gmail.com>
 # License:
 # https://raw.githubusercontent.com/RedPitaya/RedPitaya/master/COPYING
 ################################################################################
@@ -116,9 +116,6 @@ groupadd --system spi
 groupadd --system eeprom
 groupadd --system xadc
 groupadd --system dma
-
-# add a default user
-useradd -m -c "Red Pitaya" -s /bin/bash -G sudo,xdevcfg,uio,xadc,led,gpio,spi,i2c,eeprom,dialout,dma redpitaya
 EOF_CHROOT
 
 ################################################################################

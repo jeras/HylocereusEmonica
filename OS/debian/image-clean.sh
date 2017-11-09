@@ -1,7 +1,7 @@
 #!/bin/sh
 ################################################################################
 # Author:
-# Iztok Jeras <iztok.jeras@redpitaya.com>
+# Iztok Jeras <iztok.jeras@gmail.com>
 # License:
 # https://raw.githubusercontent.com/RedPitaya/RedPitaya/master/COPYING
 ################################################################################

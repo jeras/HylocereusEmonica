@@ -1,7 +1,7 @@
 ################################################################################
 # Authors:
 # - Pavel Demin <pavel.demin@uclouvain.be>
-# - Iztok Jeras <iztok.jeras@redpitaya.com>
+# - Iztok Jeras <iztok.jeras@gmail.com>
 # License:
 # https://raw.githubusercontent.com/RedPitaya/RedPitaya/master/COPYING
 ################################################################################
@@ -79,11 +79,6 @@ EOF_CHROOT
 # NOTE: redpitaya.py enables a systemd service
 # which changes the hostname on boot, to an unique value
 ################################################################################
-
-#chroot $ROOT_DIR <<- EOF_CHROOT
-# TODO seems sytemd is not running without /proc/cmdline or something
-#hostnamectl set-hostname redpitaya
-#EOF_CHROOT
 
 install -v -m 664 -o root -D $OVERLAY/etc/hostname  $ROOT_DIR/etc/hostname
 
