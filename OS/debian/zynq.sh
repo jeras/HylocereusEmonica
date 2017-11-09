@@ -37,40 +37,41 @@ install -v -m 664 -o root -D patches/fw_env.config  $ROOT_DIR/etc/fw_env.config
 chroot $ROOT_DIR <<- EOF_CHROOT
 # I2C libraries
 apt-get install -y libi2c-dev i2c-tools
+apt-get install -y -t testing dtc
+apt-get install -y -t testing libne10-10 libne10-dev
+apt-get install -y libiio-dev python-libiio iiod libiio-utils libiio-cil-dev
 EOF_CHROOT
 
 # NOTE: we have to compile a custom device tree compiler with overlay support
-chroot $ROOT_DIR <<- EOF_CHROOT
-#curl -L https://github.com/pantoniou/dtc/archive/overlays.tar.gz -o dtc.tar.gz
-curl -L https://github.com/RedPitaya/dtc/archive/overlays.tar.gz -o dtc.tar.gz
-tar zxvf dtc.tar.gz
-cd dtc-overlays
-make
-make install PREFIX=/usr
-cd ../
-rm -rf dtc-overlays dtc.tar.gz
-EOF_CHROOT
+#chroot $ROOT_DIR <<- EOF_CHROOT
+#git clone --depth 1 git://git.kernel.org/pub/scm/utils/dtc/dtc.git
+#cd dtc
+#make
+#make install PREFIX=/usr
+#cd ../
+#rm -rf dtc dtc.tar.gz
+#EOF_CHROOT
 
 # IIO library, the version provided in debian is old, missing Python 3 bindings
-chroot $ROOT_DIR <<- EOF_CHROOT
-#apt-get -y install libiio-dev python-libiio iiod libiio-utils libiio-cil-dev
-
-# https://wiki.analog.com/resources/eval/user-guides/ad-fmcdaq2-ebz/software/linux/applications/libiio#how_to_build_it
-apt-get -y install libxml2 libxml2-dev bison flex libcdk5-dev cmake
-apt-get -y install libaio-dev libusb-1.0-0-dev libserialport-dev libxml2-dev libavahi-client-dev
-apt-get -y install python3-pip python3-setuptools
-#git clone --branch v0.11 --depth 1 https://github.com/analogdevicesinc/libiio.git
-curl -L https://github.com/analogdevicesinc/libiio/archive/v0.11.tar.gz -o libiio.tar.gz
-tar zxvf libiio.tar.gz
-cd libiio-0.11/
-cmake ./
-make all
-make install
-pip3 install bindings/python/
-# cleanup
-cd ../
-rm -rf libiio-0.10 libiio.tar.gz
-EOF_CHROOT
+#chroot $ROOT_DIR <<- EOF_CHROOT
+##apt-get -y install libiio-dev python-libiio iiod libiio-utils libiio-cil-dev
+#
+## https://wiki.analog.com/resources/eval/user-guides/ad-fmcdaq2-ebz/software/linux/applications/libiio#how_to_build_it
+#apt-get -y install libxml2 libxml2-dev bison flex libcdk5-dev cmake
+#apt-get -y install libaio-dev libusb-1.0-0-dev libserialport-dev libxml2-dev libavahi-client-dev
+#apt-get -y install python3-pip python3-setuptools
+##git clone --branch v0.11 --depth 1 https://github.com/analogdevicesinc/libiio.git
+#curl -L https://github.com/analogdevicesinc/libiio/archive/v0.11.tar.gz -o libiio.tar.gz
+#tar zxvf libiio.tar.gz
+#cd libiio-0.11/
+#cmake ./
+#make all
+#make install
+#pip3 install bindings/python/
+## cleanup
+#cd ../
+#rm -rf libiio-0.10 libiio.tar.gz
+#EOF_CHROOT
 
 ## Ne10 library, the version in launchpad fails to build
 # TODO: 'make install' is not working yet
