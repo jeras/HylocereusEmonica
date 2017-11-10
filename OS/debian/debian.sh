@@ -19,8 +19,6 @@ fi
 ARCH=armhf
 DISTRO=stretch
 MIRROR=http://deb.debian.org/debian/
-#echo debootstrap --foreign --arch $ARCH $DISTRO $ROOT_DIR $MIRROR
-#exit
 debootstrap --foreign --arch $ARCH $DISTRO $ROOT_DIR $MIRROR
 
 OVERLAY=OS/debian/overlay
@@ -40,7 +38,7 @@ EOF_CHROOT
 # APT settings
 ################################################################################
 
-cp -r $OVERLAY/etc/apt/* $ROOT_DIR/etc/
+cp -rv $OVERLAY/etc/apt/* $ROOT_DIR/etc/apt/
 
 chroot $ROOT_DIR <<- EOF_CHROOT
 apt-get update

@@ -37,7 +37,7 @@ install -v -m 664 -o root -D patches/fw_env.config  $ROOT_DIR/etc/fw_env.config
 chroot $ROOT_DIR <<- EOF_CHROOT
 # I2C libraries
 apt-get install -y libi2c-dev i2c-tools
-apt-get install -y -t testing dtc
+apt-get install -y -t testing device-tree-compiler
 apt-get install -y -t testing libne10-10 libne10-dev
 apt-get install -y libiio-dev python-libiio iiod libiio-utils libiio-cil-dev
 EOF_CHROOT
